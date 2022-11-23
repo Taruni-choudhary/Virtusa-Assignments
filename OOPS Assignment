@@ -1,0 +1,198 @@
+import java.util.*;
+class Details{
+    int regNo, fee, yearOfStudy;
+    long adNo;
+    String name, DOB, gender, address;
+
+    public Details(int id, String name, String gender, Long adNo, String DOB, int fee, int yearOfStudy, String address){
+        this.regNo = regNo;
+        this.name = name;
+        this.gender = gender;
+        this.adNo = adNo;
+        this.DOB = DOB;
+        this.fee = fee;
+        this.yearOfStudy = yearOfStudy;
+        this.address = address;
+    }
+}
+
+
+class Student{
+    public static void main(String[] args) {
+        Scanner sc = new Scanner (System.in);
+        ArrayList <Details> student = new ArrayList<Details>();
+        int regNo, fee, yearOfStudy,s_rn,count = 0,co;
+        long adNo;
+        String name, DOB, gender, address;
+        boolean f = true;
+        
+        System.out.println("Menu");
+
+        System.out.println("1. Add Student Details\n2. View Single Student Details\n3. View All Student Details\n4. Update Student Details\n5. Delete Student Details\n6. exit");
+
+        while(f){
+            System.out.print("Enter your choice : ");
+            int n = sc.nextInt();
+            boolean flag = false;
+            switch(n){
+                case 1 :
+                    System.out.println("Enter the details\n");
+                    System.out.print("Enter regNo : ");
+                    
+                    regNo = sc.nextInt();
+
+                    System.out.print("Enter Name : ");
+                    name = sc.next();
+
+                    System.out.print("Enter Gender (M/F/O) : ");
+                    gender = sc.next();
+
+                    System.out.print("Enter Aadhar number : ");
+                    adNo = sc.nextLong();
+
+                    System.out.print("Enter DOB(DD/MM/YYYY) : ");
+                    DOB = sc.next();
+
+                    System.out.print("Enter Fees : ");
+                    fee = sc.nextInt();
+
+                    System.out.print("Enter the Year Of Study : ");
+                    yearOfStudy = sc.nextInt();
+
+                    System.out.print("Enter the address : ");
+                    address = sc.next();
+
+                    student.add(new Details(
+            regNo, name, gender, adNo, DOB, fee, yearOfStudy, address));
+
+                    count++;
+                    System.out.println("Student Details added sucessfully !");
+                    break;
+
+                case 2 :
+                    
+                    System.out.print("Enter the regNo : ");
+                    s_rn = sc.nextInt();
+                    System.out.println("____________");
+                    System.out.println("|regNo\t|NAME\t|GENDER\t|AADHAR NUMBER\t|DOB\t\t|FEE\t|STUDY\t|ADDRESS\t|");
+                    System.out.println("____________");
+                    for(Details d : student){
+                        if(s_rn == d.regNo){
+                            System.out.println("|"+d.
+                   regNo+"\t|"+d.name+"\t|"+d.gender+"\t|"+d.adNo+"\t|"+d.DOB+"\t|"+d.fee+"\t|"+d.yearOfStudy+"\t\t|"+d.address+"\t\t|");
+                            System.out.println("____________");
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect regNo, PLEASE ENTER CORRECT regNo ");
+                    }
+                    break;
+
+                case 3 :
+                    System.out.println("The List of the students are : ");
+                    System.out.println("____________");
+                    System.out.println("|regNo\t|NAME\t|GENDER\t|AADHAR NUMBER\t|DOB\t\t|FEE\t|STUDY\t|ADDRESS\t|");
+                    System.out.println("____________");
+                    for(Details d : student){
+                        System.out.println("|"+d.regNo+
+							"\t|"+d.name+
+							 "\t|"+d.gender+
+							 "\t|"+d.adNo+
+							 "\t|"+d.DOB+
+							 "\t|"+d.fee+	
+							 "\t|"+d.yearOfStudy+
+							 "\t\t|"+d.address+"\t\t|");
+                        System.out.println("____________");
+                    }
+                    break;
+
+                case 4 :
+                    System.out.println("Enter the Student regNo : ");
+                    s_rn = sc.nextInt();
+
+                    for(Details d : student){
+                        if(s_rn == d.regNo){
+                            System.out.println("Menu");
+                            System.out.println("1.Name\n2.Gender\n3.Aadhar Number\n4.DOB\n5.Fee\n6.Years Of Study\7.Address");
+                            System.out.print("Enter the option that you want to edit : ");
+                            int opt = sc.nextInt();
+                            String a;
+                            int b;
+                            long c;
+                            switch(opt){
+                                case 1:
+                                    System.out.print("Enter the updated name : ");
+                                    a = sc.next();
+                                    d.name = a;
+                                    break;
+                                case 2:
+                                    System.out.print("Enter the updated Gender : ");
+                                    a = sc.next();
+                                    d.gender = a;
+                                    break;
+                                case 3:
+                                    System.out.print("Enter the updated Aadhar number : ");
+                                    c = sc.nextLong();
+                                    d.adNo = c;
+                                    break;
+                                case 4:
+                                    System.out.print("Enter the updated DOB : ");
+                                    a = sc.next();
+                                    d.DOB = a;
+                                    break;
+                                case 5:
+                                    System.out.print("Enter the updated Fee : ");
+                                    b = sc.nextInt();
+                                    d.fee = b;
+                                    break;
+                                case 6:
+                                    System.out.print("Enter the updated Years of Study : ");
+                                    b = sc.nextInt();
+                                    d.yearOfStudy = b;
+                                    break;
+                                case 7:
+                                    System.out.print("Enter the updated Address : ");
+                                    a = sc.next();
+                                    d.address = a;
+                                    break;
+                            }
+                            flag = true;
+                            break;
+                        }
+                        
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect regNo, PLEASE ENTER CORRECT regNo ");
+                    }
+                    break;
+
+                case 5 :
+                    System.out.print("Enter the Student regNo to be deleted : ");
+                    s_rn = sc.nextInt();
+                    co = 0;
+                    for(Details d : student){
+                        if(s_rn == d.regNo ){
+                            student.remove(d);
+                            count--;
+                            flag = true;
+                            break;
+                        }
+                    }
+                    if(!flag){
+                        System.out.println("Incorrect regNo, PLEASE ENTER CORRECT regNo ");
+                    }else{
+                        System.out.println("Student Details deleted successfully");
+                    }
+                    break;
+
+                case 6 :
+                    f = false;
+                    break;
+                default:
+                    System.out.println("Enter the correct option from the menu");
+            }
+        }
+    }
+}
